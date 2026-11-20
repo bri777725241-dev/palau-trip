@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>N-10-3 帛琉南島永續實踐計畫｜青年海外圓夢手冊</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      background-color: #f0f7f9;
+      color: #1e293b;
+    }
+    /* 隱藏橫向捲軸但保留滑動功能 */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="pb-16">
+
+  <!-- 頂部導覽列 -->
+  <nav class="bg-teal-900 text-white sticky top-0 z-50 shadow-md">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-earth-oceania text-teal-300 text-xl"></i>
+        <span class="font-bold text-base sm:text-lg tracking-wide">N-10-3 帛琉南島永續實踐</span>
+      </div>
+      <div class="flex gap-3 sm:gap-5 text-xs sm:text-sm font-medium">
+        <a href="#schedule" class="hover:text-teal-300 transition">每日行程</a>
+        <a href="#spots" class="hover:text-teal-300 transition">重點景點</a>
+        <a href="#checklist" class="hover:text-teal-300 transition">行前清單</a>
+        <a href="#budget" class="hover:text-teal-300 transition">收支記帳</a>
+        <a href="#notes" class="hover:text-teal-300 transition">田野筆記</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero 橫幅與主要溝通對象說明 -->
+  <header class="bg-gradient-to-br from-teal-800 via-cyan-800 to-blue-900 text-white py-10 px-4 shadow-inner">
+    <div class="max-w-5xl mx-auto">
+      <div class="inline-block bg-teal-600/50 border border-teal-400/40 rounded-full px-3 py-1 text-xs mb-3">
+        青年百億海外圓夢基金計畫 - 海外翱翔組
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-bold mb-3 leading-tight">
+        N-10-3 帛琉南島永續實踐計畫
+      </h1>
+      <p class="text-teal-100 text-sm sm:text-base max-w-2xl mb-6">
+        從環境治理（E）、部落文化（S）到傳統法規共治（G），以平等平視的南島視角展開田野轉譯之旅。
+      </p>
+      
+      <!-- 條件一：設定網站主要溝通對象 -->
+      <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4 text-xs sm:text-sm">
+        <div class="font-bold text-teal-200 mb-1">
+          <i class="fa-solid fa-users-viewfinder mr-1"></i> 網站主要溝通對象與設計定位
+        </div>
+        <p class="text-slate-100 leading-relaxed">
+          本網站專為<strong>「參與本計畫之青年學員、隨隊講師及審查評量人員」</strong>打造。提供行前培訓與 15 天帛琉實地踏查之即時日程查詢、田野地點定位、永續行前檢核、個人經費記帳與「五感永續田野筆記」功能，支援手機與桌機跨裝置隨時紀錄。
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 mt-8 space-y-12">
+
+    <!-- 區塊一：日期點選選單與完整行程 (PDF 內容) -->
+    <section id="schedule" class="scroll-mt-20">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-4 gap-2">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-teal-900 flex items-center gap-2">
+            <i class="fa-regular fa-calendar-days text-teal-600"></i> 計畫日程表（點擊日期切換）
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">包含 116/07/14 行前培訓及 116/07/29 - 08/12 海外實踐行程</p>
+        </div>
+      </div>
+
+      <!-- 日期選擇按鈕列 -->
+      <div id="date-tabs" class="flex overflow-x-auto no-scrollbar gap-2 pb-3 mb-4">
+        <!-- 由 JS 動態生成日期按鈕 -->
+      </div>
+
+      <!-- 行程內容顯示卡片 -->
+      <div id="schedule-content" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sm:p-6 transition-all">
+        <!-- 由 JS 動態渲染當日行程 -->
+      </div>
+    </section>
+
+    <!-- 區塊二：重點景點介紹（含 Google Maps 連結） -->
+    <section id="spots" class="scroll-mt-20">
+      <h2 class="text-xl sm:text-2xl font-bold text-teal-900 flex items-center gap-2 mb-2">
+        <i class="fa-solid fa-map-location-dot text-teal-600"></i> 實踐景點與田野據點導覽
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-500 mb-5">點擊地圖按鈕可直接開啟 Google Maps 檢視地理位置與路線</p>
+
+      <div id="spots-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- 由 JS 動態生成景點卡片 -->
+      </div>
+    </section>
+
+    <!-- 區塊三：行前準備清單（可勾選 + 進度統計） -->
+    <section id="checklist" class="scroll-mt-20">
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sm:p-6">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+          <div>
+            <h2 class="text-xl sm:text-2xl font-bold text-teal-900 flex items-center gap-2">
+              <i class="fa-solid fa-list-check text-teal-600"></i> 行前準備檢核清單
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">勾選狀態將自動儲存在您的瀏覽器中</p>
+          </div>
+          <div class="text-right">
+            <span id="checklist-progress-text" class="text-sm font-bold text-teal-700">完成度：0%</span>
+            <div class="w-32 bg-slate-200 rounded-full h-2.5 mt-1">
+              <div id="checklist-progress-bar" class="bg-teal-600 h-2.5 rounded-full transition-all" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="checklist-items" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <!-- 由 JS 動態生成清單項目 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 區塊四：進階功能 - 預算花費收支記帳 -->
+    <section id="budget" class="scroll-mt-20">
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sm:p-6">
+        <h2 class="text-xl sm:text-2xl font-bold text-teal-900 flex items-center gap-2 mb-1">
+          <i class="fa-solid fa-wallet text-teal-600"></i> 預算花費收支記帳本
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-500 mb-5">記錄海外圓夢補助款、餐飲、當地交通與田野訪談支出（幣別：TWD / USD 自行備註）</p>
+
+        <!-- 總覽儀表板 -->
+        <div class="grid grid-cols-3 gap-3 mb-6 text-center">
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-3">
+            <div class="text-xs text-emerald-700 font-medium">總收入 / 預算</div>
+            <div id="total-income" class="text-base sm:text-xl font-bold text-emerald-800 mt-1">$0</div>
+          </div>
+          <div class="bg-rose-50 border border-rose-200 rounded-xl p-3">
+            <div class="text-xs text-rose-700 font-medium">總支出</div>
+            <div id="total-expense" class="text-base sm:text-xl font-bold text-rose-800 mt-1">$0</div>
+          </div>
+          <div class="bg-cyan-50 border border-cyan-200 rounded-xl p-3">
+            <div class="text-xs text-cyan-700 font-medium">目前結餘</div>
+            <div id="total-balance" class="text-base sm:text-xl font-bold text-cyan-900 mt-1">$0</div>
+          </div>
+        </div>
+
+        <!-- 新增記帳表單 -->
+        <form id="budget-form" class="grid grid-cols-1 sm:grid-cols-12 gap-2 mb-6">
+          <select id="budget-type" class="sm:col-span-2 border border-slate-300 rounded-lg px-3 py-2 text-sm bg-slate-50">
+            <option value="expense">支出 (-)</option>
+            <option value="income">收入 (+)</option>
+          </select>
+          <input type="text" id="budget-item" placeholder="項目名稱 (例：魚市場午餐 / 圓夢補助)" required
+                 class="sm:col-span-5 border border-slate-300 rounded-lg px-3 py-2 text-sm" />
+          <input type="number" id="budget-amount" placeholder="金額" min="1" required
+                 class="sm:col-span-3 border border-slate-300 rounded-lg px-3 py-2 text-sm" />
+          <button type="submit" class="sm:col-span-2 bg-teal-700 hover:bg-teal-800 text-white font-medium rounded-lg px-4 py-2 text-sm transition">
+            <i class="fa-solid fa-plus mr-1"></i>新增
+          </button>
+        </form>
+
+        <!-- 記帳明細列表 -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="border-b border-slate-200 text-slate-500 text-xs">
+                <th class="py-2 px-2">類型</th>
+                <th class="py-2 px-2">項目說明</th>
+                <th class="py-2 px-2 text-right">金額</th>
+                <th class="py-2 px-2 text-center">操作</th>
+              </tr>
+            </thead>
+            <tbody id="budget-list" class="divide-y divide-slate-100">
+              <!-- 由 JS 動態渲染 -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 區塊五：進階功能 - 心得筆記欄（五感永續田野筆記） -->
+    <section id="notes" class="scroll-mt-20">
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sm:p-6">
+        <h2 class="text-xl sm:text-2xl font-bold text-teal-900 flex items-center gap-2 mb-1">
+          <i class="fa-solid fa-book-open text-teal-600"></i> 心得筆記欄：五感永續田野紀錄
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-500 mb-5">記錄看見、聽見、體驗到的 ESG 田野線索與文化轉譯故事</p>
+
+        <form id="note-form" class="space-y-3 mb-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <input type="text" id="note-title" placeholder="筆記標題（例：艾萊州男人會館觀察與耆老訪談）" required
+                   class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full" />
+            <select id="note-tag" class="border border-slate-300 rounded-lg px-3 py-2 text-sm bg-slate-50 w-full">
+              <option value="E 環境觀察">E（環境）減塑 / 海洋保育觀察</option>
+              <option value="S 社會文化">S（社會）部落文化 / 在地轉譯</option>
+              <option value="G 治理制度">G（治理）帛琉宣言 / Bul 禁漁共治</option>
+              <option value="微訪談心得">現地微訪談與跨文化反思</option>
+            </select>
+          </div>
+          <textarea id="note-content" rows="3" placeholder="寫下今天的田野發現、影像背後的故事或心得反思..." required
+                    class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full"></textarea>
+          <button type="submit" class="bg-cyan-700 hover:bg-cyan-800 text-white font-medium rounded-lg px-5 py-2 text-sm transition">
+            <i class="fa-solid fa-pen-nib mr-1"></i> 儲存田野筆記
+          </button>
+        </form>
+
+        <div id="notes-list" class="space-y-3">
+          <!-- 由 JS 動態渲染筆記卡片 -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="max-w-5xl mx-auto px-4 mt-12 pt-6 border-t border-slate-200 text-center text-xs text-slate-500">
+    <p>青年百億海外圓夢基金計畫 - 海外翱翔組｜N-10-3 帛琉南島永續實踐計畫</p>
+    <p class="mt-1">資料依據計畫簡章編製，實際行程視現場情況調整。</p>
+  </footer>
+
+  <script>
+    // ==================== 1. 行程資料 (依據 PDF 內容) ====================
+    const scheduleData = [
+      {
+        date: "07/14 (三)",
+        fullDate: "116年7月14日 (三) 行前培訓",
+        location: "銘傳大學基河校區 J616 會議室",
+        sdg: "行前培訓（未參加視同放棄錄取資格）",
+        summary: "培訓以田野調查方法論、ESG 永續路徑地圖、文化轉譯法及跨文化溝通技巧為主軸。",
+        details: [
+          "08:00-08:20｜報到",
+          "08:20-09:20｜破冰與自我介紹：30秒自我介紹、參與動機、建立團隊溝通規則",
+          "09:20-09:50｜團隊組成與角色卡抽選（隊長 / 觀察員 / 文化記錄 / 影像控管）",
+          "10:00-11:30｜Lecture：將生硬的 ESG 轉化為肉眼可見的「田野線索」（E海洋減塑、S傳統會所Bai、G帛琉宣言與Bul禁漁）",
+          "11:30-12:30｜田野紀錄實作練習：發放「永續路徑筆記本」，練習五感永續地圖與 Photo-Elicitation 影像導引法",
+          "13:30-14:30｜文化轉譯說故事：質性資料感性重塑，拒絕獵奇視角，以平等南島同族視角記錄",
+          "14:30-15:50｜南島共鳴：現地微訪談（5-10分鐘輕鬆對話）與英語田野實戰破冰句型",
+          "16:00-17:00｜尊重在地：母系社會結構、進入 Bai 會所穿著規範、情境演練沙盒與前測問卷",
+          "17:00-17:30｜行政注意事項宣導（護照、行李、網卡）與綜合 Q&A"
+        ]
+      },
+      {
+        date: "07/29",
+        fullDate: "116/07/29｜啟程前往帛琉",
+        location: "桃園國際機場 ➔ 帛琉",
+        sdg: "團隊共識建立",
+        summary: "由桃園國際機場搭機前往帛琉，完成住宿安排、環境熟悉與團隊行程說明及共同公約共識座談會。",
+        details: [
+          "桃園國際機場集合搭機飛往帛琉",
+          "抵達後辦理入境與環境熟悉、住宿安排",
+          "召開團隊行程說明及共同公約共識座談會"
+        ]
+      },
+      {
+        date: "07/30",
+        fullDate: "116/07/30｜帛琉永續海洋生態體察 I",
+        location: "帛琉洛克群島海域",
+        sdg: "SDG 14：海洋生態",
+        summary: "群島海域探勘：當地人文與海洋生態環境介紹。",
+        details: [
+          "洛克群島海域實地探勘",
+          "觀察帛琉海洋保育政策與無毒防曬乳規範執行現況",
+          "記錄當地海洋人文與生態共存模式"
+        ]
+      },
+      {
+        date: "07/31",
+        fullDate: "116/07/31｜永續復育體察 II & 部落踏查 I",
+        location: "洛克群島海域 / 當地早市",
+        sdg: "SDG 14：海洋生態",
+        summary: "硨磲海域野放復育行動，以及原民生活與農魚產業升級觀察。",
+        details: [
+          "【帛琉永續復育實際體察 II】群島海域探勘：硨磲海域野放復育行動",
+          "【帛琉原民部落人文踏查 I：生活與農魚產業升級】當地早市市場經濟運作觀察"
+        ]
+      },
+      {
+        date: "08/01",
+        fullDate: "116/08/01｜邦交國合作交流",
+        location: "國合會駐帛琉技術團（畜牧中心 / 水產養殖所）",
+        sdg: "SDG 2：零飢餓 & SDG 14：海洋生態",
+        summary: "參訪臺灣駐帛琉技術團，了解農業技術合作與硨磲貝復育成果。",
+        details: [
+          "邦交國合作交流：參訪國合會農技團 - 畜牧中心",
+          "參訪國合會水產養殖所 - 硨磲貝復育中心",
+          "探討臺灣永續技術如何協助友邦糧食安全與海洋資源復育"
+        ]
+      },
+      {
+        date: "08/02",
+        fullDate: "116/08/02｜原民部落人文踏查 II：原民部落文化",
+        location: "帛琉私人博物館 / 艾萊州 (Airai)",
+        sdg: "SDG 11：永續城市與社區",
+        summary: "走訪百年男人會館與古老部落，深入理解帛琉母系社會與傳統建築文化。",
+        details: [
+          "參訪當地帛琉私人博物館",
+          "帛琉艾萊州文化之旅：百年男人會館 (Bai)、傳統戰船、古老部落巡禮",
+          "實踐行前培訓所學之進入會所禮儀與文化尊重規範"
+        ]
+      },
+      {
+        date: "08/03",
+        fullDate: "116/08/03｜原民部落人文踏查 III：永續產業",
+        location: "當地小農永續農場 / 永續餐廳 / PALAU HOTEL",
+        sdg: "SDG 12：責任消費與生產",
+        summary: "從產地到餐桌與旅宿業，觀察帛琉如何落實低碳與責任消費。",
+        details: [
+          "參訪當地小農永續農場，了解友善土地耕作",
+          "參訪當地永續餐廳，體驗在地食材低碳料理",
+          "參訪當地永續飯店 PALAU HOTEL 的綠色旅宿措施"
+        ]
+      },
+      {
+        date: "08/04",
+        fullDate: "116/08/04｜原民部落人文踏查 IV：觀光產業",
+        location: "巴貝大島 (Babeldaob) 天使大瀑布 / 私人博物館",
+        sdg: "SDG 15：陸域生態",
+        summary: "深入帛琉最大島嶼巴貝大島，考察熱帶雨林生態與自然觀光管理。",
+        details: [
+          "巴貝大島天使大瀑布 (Ngardmau Waterfall) 生態健行與考察",
+          "帛琉私人博物館深度文化補充",
+          "觀察陸域生態保育與觀光承載量管理"
+        ]
+      },
+      {
+        date: "08/05",
+        fullDate: "116/08/05｜原民部落人文踏查 V：產銷物流與市場經濟",
+        location: "當地魚市場 / Surangel's Supercenter / WCTC",
+        sdg: "SDG 12：責任消費與生產",
+        summary: "比較傳統魚市場與現代大型超市的供應鏈、進口依賴與減塑政策。",
+        details: [
+          "參訪當地魚市場經濟運作與漁獲交易模式",
+          "參訪當地最大超級市場 Surangel's Supercenter - Airai",
+          "參訪第二大超級市場 WCTC，進行物價、進口商品與減塑包裝田野觀察"
+        ]
+      },
+      {
+        date: "08/06",
+        fullDate: "116/08/06｜帛琉海域周邊人文生態體察 I",
+        location: "洛克群島海域",
+        sdg: "SDG 14：海洋生態",
+        summary: "結合海域探勘與傳統 BUL 禁漁垂釣文化體驗。",
+        details: [
+          "洛克群島海域生態深度探勘",
+          "BUL 垂釣文化體驗：學習傳統「Bul」生態保護機制與永續漁法"
+        ]
+      },
+      {
+        date: "08/07",
+        fullDate: "116/08/07｜帛琉海域周邊人文生態體察 II",
+        location: "石錢島 (Yapese Stone Money Quarry) / 紅樹林",
+        sdg: "SDG 14：海洋生態 & SDG 15：陸域生態",
+        summary: "無動力方舟體驗、藍炭紅樹林生態考察、戰爭遺跡與石錢島登島。",
+        details: [
+          "石錢島海域探勘與無動力方舟航行體驗",
+          "藍炭紅樹林之旅（探討藍碳固碳生態價值）",
+          "當地二戰戰爭遺跡考察與石錢島登島生態探索",
+          "進行社區訪談與質性資料補充"
+        ]
+      },
+      {
+        date: "08/08",
+        fullDate: "116/08/08｜文創工藝與原民經濟分配體察",
+        location: "ECOGLASS FACTORY 琉璃工廠",
+        sdg: "SDG 12：責任消費與生產",
+        summary: "考察廢棄玻璃回收再製工藝，見證循環經濟與原民文創結合。",
+        details: [
+          "參訪 ECOGLASS FACTORY 琉璃工廠",
+          "觀察回收玻璃瓶如何轉化為高價值南島文創藝術品",
+          "探討社區婦女就業與原民經濟分配模式"
+        ]
+      },
+      {
+        date: "08/09",
+        fullDate: "116/08/09｜永續城市與政治制度體察",
+        location: "泛太平洋度假村永續生態園區 / 臺灣駐帛琉大使館",
+        sdg: "SDG 11：永續城市與社區",
+        summary: "了解大型度假村生態園區規劃，並拜會臺灣駐帛琉大使館。",
+        details: [
+          "泛太平洋度假村 (Palau Pacific Resort) 永續生態園區建立考察",
+          "臺灣大使館參訪：了解臺帛外交合作與青年海外參與角色"
+        ]
+      },
+      {
+        date: "08/10",
+        fullDate: "116/08/10｜永續生態田野調查",
+        location: "帛琉森林與濕地生態區",
+        sdg: "SDG 15：陸域生態",
+        summary: "帛琉當地特有種鳥類與陸域生態系統田野調查解析。",
+        details: [
+          "帛琉當地特有種鳥類觀察與棲地生態解析",
+          "運用五感永續筆記本記錄聲音與視覺生態線索"
+        ]
+      },
+      {
+        date: "08/11",
+        fullDate: "116/08/11｜田野觀察與微訪談綜整",
+        location: "科羅爾 (Koror) 社區與整理據點",
+        sdg: "SDG 4：優質教育",
+        summary: "進行最後補充訪談，將十多天的質性觀察進行小組收斂與故事編排。",
+        details: [
+          "進行田野觀察缺口之補充微訪談",
+          "小組綜整五感永續地圖與 Photo-Elicitation 影像故事",
+          "準備成果發表與綜合座談分享內容"
+        ]
+      },
+      {
+        date: "08/12",
+        fullDate: "116/08/12｜綜合座談會與賦歸返程",
+        location: "帛琉會議場地 ➔ 帛琉國際機場 ➔ 桃園機場",
+        sdg: "成果反思與賦歸",
+        summary: "舉辦帛琉永續 ESG 綜合座談會、完成後測問卷，搭機返抵臺灣。",
+        details: [
+          "帛琉永續 ESG 綜合座談會與回饋交流",
+          "填寫跨文化適應力與環境素養自評量表後測問卷",
+          "整理行囊前往帛琉機場，搭機返回桃園國際機場"
+        ]
+      }
+    ];
+
+    // ==================== 2. 重點景點資料 (含 Google Maps 連結) ====================
+    const spotsData = [
+      {
+        name: "銘傳大學基河校區 (行前培訓)",
+        category: "行前培訓基地",
+        desc: "7/14 行前培訓地點（J616 會議室），學習田野方法論、ESG 線索辨識與文化轉譯。",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=銘傳大學基河校區"
+      },
+      {
+        name: "洛克群島 (Rock Islands)",
+        category: "SDG 14 海洋生態",
+        desc: "世界自然與文化雙遺產，進行海域探勘、硨磲貝復育行動與傳統 BUL 垂釣文化體驗。",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Rock+Islands+Palau"
+      },
+      {
+        name: "艾萊州百年男人會館 (Airai Bai)",
+        category: "SDG 11 部落文化",
+        desc: "帛琉現存最古老的傳統男人會所，觀察母系社會權力結構、傳統建築彩繪與部落禁忌。",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Airai+Bai+Palau"
+      },
+      {
+        name: "巴貝大島天使大瀑布 (Ngardmau Waterfall)",
+        category: "SDG 15 陸域生態",
+        desc: "帛琉最大且最壯觀的瀑布，考察熱帶雨林陸域生態與自然觀光管理。",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Ngardmau+Waterfall+Palau"
+      },
+      {
+        name: "Surangel's Supercenter - Airai",
+        category: "SDG 12 產銷與減塑",
+        desc: "帛琉最大規模超市，搭配 WCTC 超市與傳統魚市場，對比當地產銷物流與減塑政策落實。",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Surangel's+Supercenter+Airai+Palau"
+      },
+      {
+        name: "ECOGLASS FACTORY 琉璃工廠",
+        category: "SDG 12 循環文創",
+        desc: "將廢棄玻璃瓶回收再製成精美南島琉璃工藝品，體察循環經濟與原民經濟分配。",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Belau+Eco+Glass+Palau"
+      }
+    ];
+
+    // ==================== 3. 行前準備清單預設項目 ====================
+    const defaultChecklist = [
+      { id: "c1", text: "有效期限 6 個月以上之中華民國護照與電子機票", category: "行政必備" },
+      { id: "c2", text: "帛琉入境數位申報與簽署「帛琉宣言 (Palau Pledge)」", category: "法規與治理" },
+      { id: "c3", text: "海洋友善防曬乳（嚴禁含二苯甲酮等危害珊瑚成分）", category: "環境永續 (E)" },
+      { id: "c4", text: "個人環保水瓶、環保餐具與防水購物袋（落實減塑）", category: "環境永續 (E)" },
+      { id: "c5", text: "進入傳統男人會館 (Bai) 之得體服裝（避免無袖或過短褲裙）", category: "文化禮儀 (S)" },
+      { id: "c6", text: "永續路徑筆記本、防水筆記本與書寫文具", category: "田野工具" },
+      { id: "c7", text: "手機/相機防水袋、行動電源與美規雙扁腳轉接頭", category: "田野工具" },
+      { id: "c8", text: "帛琉當地網卡 / 漫遊開通與個人常備藥品（暈船藥、腸胃藥）", category: "生活與健康" }
+    ];
+
+    // ==================== 渲染行程選單與內容 ====================
+    const dateTabsEl = document.getElementById("date-tabs");
+    const scheduleContentEl = document.getElementById("schedule-content");
+    let activeDayIndex = 0;
+
+    function renderSchedule() {
+      // 渲染按鈕
+      dateTabsEl.innerHTML = scheduleData.map((item, idx) => {
+        const isActive = idx === activeDayIndex;
+        return `
+          <button onclick="selectDay(${idx})"
+            class="shrink-0 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition border ${
+              isActive 
+                ? 'bg-teal-700 text-white border-teal-700 shadow-sm' 
+                : 'bg-white text-slate-700 border-slate-200 hover:bg-teal-50'
+            }">
+            ${item.date}
+          </button>
+        `;
+      }).join("");
+
+      // 渲染內容
+      const current = scheduleData[activeDayIndex];
+      scheduleContentEl.innerHTML = `
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-slate-100">
+          <div>
+            <span class="inline-block bg-teal-100 text-teal-800 text-xs font-bold px-2.5 py-1 rounded-md mb-1">
+              ${current.sdg}
+            </span>
+            <h3 class="text-lg sm:text-xl font-bold text-slate-900">${current.fullDate}</h3>
+          </div>
+          <div class="text-xs sm:text-sm text-cyan-800 bg-cyan-50 px-3 py-1.5 rounded-lg border border-cyan-100">
+            <i class="fa-solid fa-location-dot mr-1"></i> ${current.location}
+          </div>
+        </div>
+        <p class="text-sm text-slate-600 mt-4 mb-4 bg-slate-50 p-3 rounded-lg border-l-4 border-teal-500">
+          ${current.summary}
+        </p>
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">當日執行重點與行程細項</h4>
+        <ul class="space-y-2.5">
+          ${current.details.map(detail => `
+            <li class="flex items-start gap-2.5 text-sm text-slate-700">
+              <i class="fa-solid fa-circle-check text-teal-600 mt-1 shrink-0"></i>
+              <span>${detail}</span>
+            </li>
+          `).join("")}
+        </ul>
+      `;
+    }
+
+    window.selectDay = function(index) {
+      activeDayIndex = index;
+      renderSchedule();
+    };
+
+    // ==================== 渲染景點卡片 ====================
+    function renderSpots() {
+      const spotsGrid = document.getElementById("spots-grid");
+      spotsGrid.innerHTML = spotsData.map(spot => `
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between hover:shadow-md transition">
+          <div>
+            <span class="text-xs font-semibold text-cyan-700 bg-cyan-50 px-2.5 py-1 rounded-full">
+              ${spot.category}
+            </span>
+            <h3 class="text-base font-bold text-slate-900 mt-2.5 mb-1.5">${spot.name}</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">${spot.desc}</p>
+          </div>
+          <a href="${spot.mapUrl}" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center justify-center gap-2 w-full bg-slate-800 hover:bg-teal-700 text-white text-xs sm:text-sm font-medium py-2.5 px-4 rounded-xl transition">
+            <i class="fa-solid fa-map-pin text-rose-400"></i> 在 Google Maps 開啟
+          </a>
+        </div>
+      `).join("");
+    }
+
+    // ==================== 行前清單功能 (LocalStorage 持久化) ====================
+    let checkedState = JSON.parse(localStorage.getItem("palau_checklist") || "{}");
+
+    function renderChecklist() {
+      const container = document.getElementById("checklist-items");
+      let checkedCount = 0;
+
+      container.innerHTML = defaultChecklist.map(item => {
+        const isChecked = !!checkedState[item.id];
+        if (isChecked) checkedCount++;
+        return `
+          <label class="flex items-start gap-3 p-3 rounded-xl border cursor-pointer transition ${
+            isChecked ? 'bg-teal-50/60 border-teal-200' : 'bg-slate-50 border-slate-200 hover:bg-slate-100'
+          }">
+            <input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleCheck('${item.id}')"
+                   class="mt-1 w-4 h-4 accent-teal-700 rounded cursor-pointer" />
+            <div class="text-sm">
+              <span class="text-[11px] font-bold text-teal-700 block">${item.category}</span>
+              <span class="${isChecked ? 'line-through text-slate-400' : 'text-slate-800'}">${item.text}</span>
+            </div>
+          </label>
+        `;
+      }).join("");
+
+      const percent = Math.round((checkedCount / defaultChecklist.length) * 100);
+      document.getElementById("checklist-progress-text").textContent = `完成度：${percent}% (${checkedCount}/${defaultChecklist.length})`;
+      document.getElementById("checklist-progress-bar").style.width = `${percent}%`;
+    }
+
+    window.toggleCheck = function(id) {
+      checkedState[id] = !checkedState[id];
+      localStorage.setItem("palau_checklist", JSON.stringify(checkedState));
+      renderChecklist();
+    };
+
+    // ==================== 收支記帳功能 (LocalStorage 持久化) ====================
+    let budgetRecords = JSON.parse(localStorage.getItem("palau_budget") || '[{"id":1,"type":"income","item":"海外圓夢計畫預備金","amount":30000},{"id":2,"type":"expense","item":"海洋友善防曬乳與田野筆記本","amount":850}]');
+
+    function renderBudget() {
+      const listEl = document.getElementById("budget-list");
+      let income = 0;
+      let expense = 0;
+
+      listEl.innerHTML = budgetRecords.map(rec => {
+        if (rec.type === "income") income += Number(rec.amount);
+        else expense += Number(rec.amount);
+
+        return `
+          <tr>
+            <td class="py-2.5 px-2">
+              <span class="text-xs font-bold px-2 py-0.5 rounded ${
+                rec.type === "income" ? "bg-emerald-100 text-emerald-800" : "bg-rose-100 text-rose-800"
+              }">
+                ${rec.type === "income" ? "收入" : "支出"}
+              </span>
+            </td>
+            <td class="py-2.5 px-2 text-slate-800">${rec.item}</td>
+            <td class="py-2.5 px-2 text-right font-mono font-medium ${
+              rec.type === "income" ? "text-emerald-700" : "text-rose-700"
+            }">
+              ${rec.type === "income" ? "+" : "-"}$${Number(rec.amount).toLocaleString()}
+            </td>
+            <td class="py-2.5 px-2 text-center">
+              <button onclick="deleteBudget(${rec.id})" class="text-slate-400 hover:text-rose-600 text-xs" title="刪除">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join("");
+
+      document.getElementById("total-income").textContent = `$${income.toLocaleString()}`;
+      document.getElementById("total-expense").textContent = `$${expense.toLocaleString()}`;
+      document.getElementById("total-balance").textContent = `$${(income - expense).toLocaleString()}`;
+    }
+
+    document.getElementById("budget-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const type = document.getElementById("budget-type").value;
+      const item = document.getElementById("budget-item").value.trim();
+      const amount = Number(document.getElementById("budget-amount").value);
+      if (!item || amount <= 0) return;
+
+      budgetRecords.unshift({ id: Date.now(), type, item, amount });
+      localStorage.setItem("palau_budget", JSON.stringify(budgetRecords));
+      this.reset();
+      renderBudget();
+    });
+
+    window.deleteBudget = function(id) {
+      budgetRecords = budgetRecords.filter(r => r.id !== id);
+      localStorage.setItem("palau_budget", JSON.stringify(budgetRecords));
+      renderBudget();
+    };
+
+    // ==================== 田野心得筆記功能 (LocalStorage 持久化) ====================
+    let fieldNotes = JSON.parse(localStorage.getItem("palau_notes") || '[{"id":1,"title":"行前培訓筆記：什麼是田野線索？","tag":"G 治理制度","content":"講師提醒我們不要用觀光客的獵奇視角看部落，而是用平視的南島同族視角，觀察像貼著帛琉宣言的水瓶、耆老修復 Bai 會所的雙手等有故事的細節。","date":"116/07/14"}]');
+
+    function renderNotes() {
+      const notesEl = document.getElementById("notes-list");
+      notesEl.innerHTML = fieldNotes.map(n => `
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <div class="flex items-center gap-2">
+              <span class="bg-cyan-100 text-cyan-800 text-xs font-bold px-2 py-0.5 rounded">${n.tag}</span>
+              <h3 class="font-bold text-slate-900 text-sm sm:text-base">${n.title}</h3>
+            </div>
+            <button onclick="deleteNote(${n.id})" class="text-slate-400 hover:text-rose-600 text-xs">
+              <i class="fa-solid fa-xmark"></i> 刪除
+            </button>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed whitespace-pre-line">${n.content}</p>
+          <div class="text-[11px] text-slate-400 mt-2">紀錄時間：${n.date}</div>
+        </div>
+      `).join("");
+    }
+
+    document.getElementById("note-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const title = document.getElementById("note-title").value.trim();
+      const tag = document.getElementById("note-tag").value;
+      const content = document.getElementById("note-content").value.trim();
+      if (!title || !content) return;
+
+      const now = new Date().toLocaleDateString("zh-TW");
+      fieldNotes.unshift({ id: Date.now(), title, tag, content, date: now });
+      localStorage.setItem("palau_notes", JSON.stringify(fieldNotes));
+      this.reset();
+      renderNotes();
+    });
+
+    window.deleteNote = function(id) {
+      fieldNotes = fieldNotes.filter(n => n.id !== id);
+      localStorage.setItem("palau_notes", JSON.stringify(fieldNotes));
+      renderNotes();
+    };
+
+    // 初始化所有模組
+    renderSchedule();
+    renderSpots();
+    renderChecklist();
+    renderBudget();
+    renderNotes();
+  </script>
+</body>
+</html>
