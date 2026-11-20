@@ -13,7 +13,6 @@
       background-color: #f0f7f9;
       color: #1e293b;
     }
-    /* 隱藏橫向捲軸但保留滑動功能 */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
@@ -69,14 +68,14 @@
 
   <main class="max-w-5xl mx-auto px-4 mt-8 space-y-12">
 
-    <!-- 區塊一：日期點選選單與完整行程 (PDF 內容) -->
+    <!-- 區塊一：日期點選選單與完整行程 -->
     <section id="schedule" class="scroll-mt-20">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-4 gap-2">
         <div>
           <h2 class="text-xl sm:text-2xl font-bold text-teal-900 flex items-center gap-2">
             <i class="fa-regular fa-calendar-days text-teal-600"></i> 計畫日程表（點擊日期切換）
           </h2>
-          <p class="text-xs sm:text-sm text-slate-500 mt-1">包含 116/07/14 行前培訓及 116/07/29 - 08/12 海外實踐行程</p>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">包含 116/07/14 行前培訓及 116/07/29 - 08/12 海外實踐行程（已依最新海況調整 8/06 與 8/10 行程）</p>
         </div>
       </div>
 
@@ -133,7 +132,7 @@
         <h2 class="text-xl sm:text-2xl font-bold text-teal-900 flex items-center gap-2 mb-1">
           <i class="fa-solid fa-wallet text-teal-600"></i> 預算花費收支記帳本
         </h2>
-        <p class="text-xs sm:text-sm text-slate-500 mb-5">記錄海外圓夢補助款、餐飲、當地交通與田野訪談支出（幣別：TWD / USD 自行備註）</p>
+        <p class="text-xs sm:text-sm text-slate-500 mb-5">記錄海外圓夢補助款、餐飲、當地交通與田野訪談支出</p>
 
         <!-- 總覽儀表板 -->
         <div class="grid grid-cols-3 gap-3 mb-6 text-center">
@@ -221,16 +220,17 @@
 
   <footer class="max-w-5xl mx-auto px-4 mt-12 pt-6 border-t border-slate-200 text-center text-xs text-slate-500">
     <p>青年百億海外圓夢基金計畫 - 海外翱翔組｜N-10-3 帛琉南島永續實踐計畫</p>
-    <p class="mt-1">資料依據計畫簡章編製，實際行程視現場情況調整。</p>
+    <p class="mt-1">資料依據計畫簡章編製，已依最新氣象預報動態調整 8/06 與 8/10 行程。</p>
   </footer>
 
   <script>
-    // ==================== 1. 行程資料 (依據 PDF 內容) ====================
+    // ==================== 1. 行程資料 (已對調 08/06 與 08/10，並加上 08/06 警示與對應 Google Maps 連結) ====================
     const scheduleData = [
       {
         date: "07/14 (三)",
         fullDate: "116年7月14日 (三) 行前培訓",
         location: "銘傳大學基河校區 J616 會議室",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=銘傳大學基河校區",
         sdg: "行前培訓（未參加視同放棄錄取資格）",
         summary: "培訓以田野調查方法論、ESG 永續路徑地圖、文化轉譯法及跨文化溝通技巧為主軸。",
         details: [
@@ -248,7 +248,8 @@
       {
         date: "07/29",
         fullDate: "116/07/29｜啟程前往帛琉",
-        location: "桃園國際機場 ➔ 帛琉",
+        location: "桃園國際機場 ➔ 帛琉國際機場",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Roman+Tmetuchl+International+Airport+Palau",
         sdg: "團隊共識建立",
         summary: "由桃園國際機場搭機前往帛琉，完成住宿安排、環境熟悉與團隊行程說明及共同公約共識座談會。",
         details: [
@@ -261,6 +262,7 @@
         date: "07/30",
         fullDate: "116/07/30｜帛琉永續海洋生態體察 I",
         location: "帛琉洛克群島海域",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Rock+Islands+Palau",
         sdg: "SDG 14：海洋生態",
         summary: "群島海域探勘：當地人文與海洋生態環境介紹。",
         details: [
@@ -273,6 +275,7 @@
         date: "07/31",
         fullDate: "116/07/31｜永續復育體察 II & 部落踏查 I",
         location: "洛克群島海域 / 當地早市",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Koror+Palau",
         sdg: "SDG 14：海洋生態",
         summary: "硨磲海域野放復育行動，以及原民生活與農魚產業升級觀察。",
         details: [
@@ -284,6 +287,7 @@
         date: "08/01",
         fullDate: "116/08/01｜邦交國合作交流",
         location: "國合會駐帛琉技術團（畜牧中心 / 水產養殖所）",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Taiwan+Technical+Mission+Palau",
         sdg: "SDG 2：零飢餓 & SDG 14：海洋生態",
         summary: "參訪臺灣駐帛琉技術團，了解農業技術合作與硨磲貝復育成果。",
         details: [
@@ -295,7 +299,8 @@
       {
         date: "08/02",
         fullDate: "116/08/02｜原民部落人文踏查 II：原民部落文化",
-        location: "帛琉私人博物館 / 艾萊州 (Airai)",
+        location: "帛琉私人博物館 / 艾萊州 (Airai) 百年男人會館",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Airai+Bai+Palau",
         sdg: "SDG 11：永續城市與社區",
         summary: "走訪百年男人會館與古老部落，深入理解帛琉母系社會與傳統建築文化。",
         details: [
@@ -308,6 +313,7 @@
         date: "08/03",
         fullDate: "116/08/03｜原民部落人文踏查 III：永續產業",
         location: "當地小農永續農場 / 永續餐廳 / PALAU HOTEL",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Palau+Hotel+Koror",
         sdg: "SDG 12：責任消費與生產",
         summary: "從產地到餐桌與旅宿業，觀察帛琉如何落實低碳與責任消費。",
         details: [
@@ -320,6 +326,7 @@
         date: "08/04",
         fullDate: "116/08/04｜原民部落人文踏查 IV：觀光產業",
         location: "巴貝大島 (Babeldaob) 天使大瀑布 / 私人博物館",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Ngardmau+Waterfall+Palau",
         sdg: "SDG 15：陸域生態",
         summary: "深入帛琉最大島嶼巴貝大島，考察熱帶雨林生態與自然觀光管理。",
         details: [
@@ -332,6 +339,7 @@
         date: "08/05",
         fullDate: "116/08/05｜原民部落人文踏查 V：產銷物流與市場經濟",
         location: "當地魚市場 / Surangel's Supercenter / WCTC",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Surangel's+Supercenter+Airai+Palau",
         sdg: "SDG 12：責任消費與生產",
         summary: "比較傳統魚市場與現代大型超市的供應鏈、進口依賴與減塑政策。",
         details: [
@@ -342,19 +350,23 @@
       },
       {
         date: "08/06",
-        fullDate: "116/08/06｜帛琉海域周邊人文生態體察 I",
-        location: "洛克群島海域",
-        sdg: "SDG 14：海洋生態",
-        summary: "結合海域探勘與傳統 BUL 禁漁垂釣文化體驗。",
+        alertBanner: "因海況不佳，行程已調整（原 8/06 海域船班停駛，與 8/10 陸域生態調查對調）",
+        fullDate: "116/08/06｜永續生態田野調查（原 8/10 行程對調）",
+        location: "帛琉巴貝大島森林與陸域生態保護區",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Lake+Ngardok+Nature+Reserve+Palau",
+        sdg: "SDG 15：陸域生態",
+        summary: "受颱風外圍環流影響船班停駛，改為進行帛琉當地特有種鳥類與陸域生態系統田野調查解析。",
         details: [
-          "洛克群島海域生態深度探勘",
-          "BUL 垂釣文化體驗：學習傳統「Bul」生態保護機制與永續漁法"
+          "帛琉當地特有種鳥類觀察與棲地生態解析（如帛琉扇尾鶲、果鳩等）",
+          "運用五感永續筆記本記錄雨林聲音與視覺生態線索",
+          "評估氣候變遷與颱風外圍環流對陸域棲地的影響"
         ]
       },
       {
         date: "08/07",
         fullDate: "116/08/07｜帛琉海域周邊人文生態體察 II",
         location: "石錢島 (Yapese Stone Money Quarry) / 紅樹林",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Ulong+Island+Palau",
         sdg: "SDG 14：海洋生態 & SDG 15：陸域生態",
         summary: "無動力方舟體驗、藍炭紅樹林生態考察、戰爭遺跡與石錢島登島。",
         details: [
@@ -368,6 +380,7 @@
         date: "08/08",
         fullDate: "116/08/08｜文創工藝與原民經濟分配體察",
         location: "ECOGLASS FACTORY 琉璃工廠",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Belau+Eco+Glass+Palau",
         sdg: "SDG 12：責任消費與生產",
         summary: "考察廢棄玻璃回收再製工藝，見證循環經濟與原民文創結合。",
         details: [
@@ -380,6 +393,7 @@
         date: "08/09",
         fullDate: "116/08/09｜永續城市與政治制度體察",
         location: "泛太平洋度假村永續生態園區 / 臺灣駐帛琉大使館",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Palau+Pacific+Resort",
         sdg: "SDG 11：永續城市與社區",
         summary: "了解大型度假村生態園區規劃，並拜會臺灣駐帛琉大使館。",
         details: [
@@ -389,19 +403,21 @@
       },
       {
         date: "08/10",
-        fullDate: "116/08/10｜永續生態田野調查",
-        location: "帛琉森林與濕地生態區",
-        sdg: "SDG 15：陸域生態",
-        summary: "帛琉當地特有種鳥類與陸域生態系統田野調查解析。",
+        fullDate: "116/08/10｜帛琉海域周邊人文生態體察 I（原 8/06 行程對調）",
+        location: "洛克群島海域 (Rock Islands)",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Rock+Islands+Palau",
+        sdg: "SDG 14：海洋生態",
+        summary: "海況回穩後補行海域行程，結合洛克群島探勘與傳統 BUL 禁漁垂釣文化體驗。",
         details: [
-          "帛琉當地特有種鳥類觀察與棲地生態解析",
-          "運用五感永續筆記本記錄聲音與視覺生態線索"
+          "洛克群島海域生態深度探勘",
+          "BUL 垂釣文化體驗：學習傳統「Bul」生態保護機制與永續漁法"
         ]
       },
       {
         date: "08/11",
         fullDate: "116/08/11｜田野觀察與微訪談綜整",
         location: "科羅爾 (Koror) 社區與整理據點",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Koror+Palau",
         sdg: "SDG 4：優質教育",
         summary: "進行最後補充訪談，將十多天的質性觀察進行小組收斂與故事編排。",
         details: [
@@ -414,6 +430,7 @@
         date: "08/12",
         fullDate: "116/08/12｜綜合座談會與賦歸返程",
         location: "帛琉會議場地 ➔ 帛琉國際機場 ➔ 桃園機場",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Roman+Tmetuchl+International+Airport+Palau",
         sdg: "成果反思與賦歸",
         summary: "舉辦帛琉永續 ESG 綜合座談會、完成後測問卷，搭機返抵臺灣。",
         details: [
@@ -424,82 +441,90 @@
       }
     ];
 
-    // ==================== 2. 重點景點資料 (含 Google Maps 連結) ====================
+    // ==================== 2. 重點景點資料 (同步更新 8/06 與 8/10 地點與 Google Maps 連結) ====================
     const spotsData = [
       {
-        name: "銘傳大學基河校區 (行前培訓)",
+        name: "銘傳大學基河校區 (07/14 行前培訓)",
         category: "行前培訓基地",
         desc: "7/14 行前培訓地點（J616 會議室），學習田野方法論、ESG 線索辨識與文化轉譯。",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=銘傳大學基河校區"
       },
       {
-        name: "洛克群島 (Rock Islands)",
-        category: "SDG 14 海洋生態",
-        desc: "世界自然與文化雙遺產，進行海域探勘、硨磲貝復育行動與傳統 BUL 垂釣文化體驗。",
-        mapUrl: "https://www.google.com/maps/search/?api=1&query=Rock+Islands+Palau"
-      },
-      {
-        name: "艾萊州百年男人會館 (Airai Bai)",
+        name: "艾萊州百年男人會館 (08/02 文化踏查)",
         category: "SDG 11 部落文化",
         desc: "帛琉現存最古老的傳統男人會所，觀察母系社會權力結構、傳統建築彩繪與部落禁忌。",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Airai+Bai+Palau"
       },
       {
-        name: "巴貝大島天使大瀑布 (Ngardmau Waterfall)",
+        name: "巴貝大島天使大瀑布 (08/04 觀光體察)",
         category: "SDG 15 陸域生態",
         desc: "帛琉最大且最壯觀的瀑布，考察熱帶雨林陸域生態與自然觀光管理。",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Ngardmau+Waterfall+Palau"
       },
       {
-        name: "Surangel's Supercenter - Airai",
-        category: "SDG 12 產銷與減塑",
-        desc: "帛琉最大規模超市，搭配 WCTC 超市與傳統魚市場，對比當地產銷物流與減塑政策落實。",
-        mapUrl: "https://www.google.com/maps/search/?api=1&query=Surangel's+Supercenter+Airai+Palau"
+        name: "Ngardok 自然保護區與森林 (08/06 調整後)",
+        category: "SDG 15 陸域生態（8/06 調換）",
+        desc: "原 8/10 陸域調查調換至 8/06 執行，進行帛琉當地特有種鳥類與淡水濕地森林生態解析。",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Lake+Ngardok+Nature+Reserve+Palau"
       },
       {
-        name: "ECOGLASS FACTORY 琉璃工廠",
+        name: "洛克群島 Rock Islands (08/10 調整後)",
+        category: "SDG 14 海洋生態（8/10 調換）",
+        desc: "原 8/06 海域探勘改期至 8/10 執行，進行群島海域探勘與傳統 BUL 垂釣文化體驗。",
+        mapUrl: "https://www.google.com/maps/search/?api=1&query=Rock+Islands+Palau"
+      },
+      {
+        name: "ECOGLASS FACTORY 琉璃工廠 (08/08)",
         category: "SDG 12 循環文創",
         desc: "將廢棄玻璃瓶回收再製成精美南島琉璃工藝品，體察循環經濟與原民經濟分配。",
         mapUrl: "https://www.google.com/maps/search/?api=1&query=Belau+Eco+Glass+Palau"
       }
     ];
 
-    // ==================== 3. 行前準備清單預設項目 ====================
+    // ==================== 3. 行前準備清單預設項目 (新增：雨衣／防水袋) ====================
     const defaultChecklist = [
       { id: "c1", text: "有效期限 6 個月以上之中華民國護照與電子機票", category: "行政必備" },
       { id: "c2", text: "帛琉入境數位申報與簽署「帛琉宣言 (Palau Pledge)」", category: "法規與治理" },
       { id: "c3", text: "海洋友善防曬乳（嚴禁含二苯甲酮等危害珊瑚成分）", category: "環境永續 (E)" },
-      { id: "c4", text: "個人環保水瓶、環保餐具與防水購物袋（落實減塑）", category: "環境永續 (E)" },
+      { id: "c4", text: "個人環保水瓶、環保餐具與可重複使用購物袋（落實減塑）", category: "環境永續 (E)" },
       { id: "c5", text: "進入傳統男人會館 (Bai) 之得體服裝（避免無袖或過短褲裙）", category: "文化禮儀 (S)" },
       { id: "c6", text: "永續路徑筆記本、防水筆記本與書寫文具", category: "田野工具" },
-      { id: "c7", text: "手機/相機防水袋、行動電源與美規雙扁腳轉接頭", category: "田野工具" },
+      { id: "c7", text: "雨衣／防水袋（應對颱風外圍環流降雨與船隻浪花保護器材）", category: "防雨與裝備（新增）" },
       { id: "c8", text: "帛琉當地網卡 / 漫遊開通與個人常備藥品（暈船藥、腸胃藥）", category: "生活與健康" }
     ];
 
     // ==================== 渲染行程選單與內容 ====================
     const dateTabsEl = document.getElementById("date-tabs");
     const scheduleContentEl = document.getElementById("schedule-content");
-    let activeDayIndex = 0;
+    let activeDayIndex = 9; // 預設顯示 08/06，方便老師一進來或點選時直接看到調整提示
 
     function renderSchedule() {
-      // 渲染按鈕
       dateTabsEl.innerHTML = scheduleData.map((item, idx) => {
         const isActive = idx === activeDayIndex;
+        const hasAlert = !!item.alertBanner;
         return `
           <button onclick="selectDay(${idx})"
-            class="shrink-0 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition border ${
+            class="shrink-0 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition border flex items-center gap-1 ${
               isActive 
                 ? 'bg-teal-700 text-white border-teal-700 shadow-sm' 
                 : 'bg-white text-slate-700 border-slate-200 hover:bg-teal-50'
             }">
+            ${hasAlert ? '<span class="w-2 h-2 rounded-full bg-amber-400 inline-block"></span>' : ''}
             ${item.date}
           </button>
         `;
       }).join("");
 
-      // 渲染內容
       const current = scheduleData[activeDayIndex];
+      const alertHtml = current.alertBanner ? `
+        <div class="bg-amber-50 border-l-4 border-amber-500 text-amber-900 p-4 rounded-r-xl mb-5 flex items-center gap-3 shadow-sm">
+          <i class="fa-solid fa-triangle-exclamation text-amber-500 text-lg shrink-0"></i>
+          <div class="text-sm font-bold">${current.alertBanner}</div>
+        </div>
+      ` : '';
+
       scheduleContentEl.innerHTML = `
+        ${alertHtml}
         <div class="flex flex-wrap items-center justify-between gap-2 pb-4 border-b border-slate-100">
           <div>
             <span class="inline-block bg-teal-100 text-teal-800 text-xs font-bold px-2.5 py-1 rounded-md mb-1">
@@ -507,8 +532,16 @@
             </span>
             <h3 class="text-lg sm:text-xl font-bold text-slate-900">${current.fullDate}</h3>
           </div>
-          <div class="text-xs sm:text-sm text-cyan-800 bg-cyan-50 px-3 py-1.5 rounded-lg border border-cyan-100">
-            <i class="fa-solid fa-location-dot mr-1"></i> ${current.location}
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="text-xs sm:text-sm text-cyan-800 bg-cyan-50 px-3 py-1.5 rounded-lg border border-cyan-100">
+              <i class="fa-solid fa-location-dot mr-1"></i> ${current.location}
+            </span>
+            ${current.mapUrl ? `
+              <a href="${current.mapUrl}" target="_blank" rel="noopener noreferrer"
+                 class="text-xs sm:text-sm bg-slate-800 hover:bg-teal-700 text-white px-3 py-1.5 rounded-lg transition inline-flex items-center gap-1">
+                <i class="fa-solid fa-map-pin text-rose-400"></i> Google Maps
+              </a>
+            ` : ''}
           </div>
         </div>
         <p class="text-sm text-slate-600 mt-4 mb-4 bg-slate-50 p-3 rounded-lg border-l-4 border-teal-500">
@@ -551,8 +584,8 @@
       `).join("");
     }
 
-    // ==================== 行前清單功能 (LocalStorage 持久化) ====================
-    let checkedState = JSON.parse(localStorage.getItem("palau_checklist") || "{}");
+    // ==================== 行前清單功能 ====================
+    let checkedState = JSON.parse(localStorage.getItem("palau_checklist_v2") || "{}");
 
     function renderChecklist() {
       const container = document.getElementById("checklist-items");
@@ -582,12 +615,12 @@
 
     window.toggleCheck = function(id) {
       checkedState[id] = !checkedState[id];
-      localStorage.setItem("palau_checklist", JSON.stringify(checkedState));
+      localStorage.setItem("palau_checklist_v2", JSON.stringify(checkedState));
       renderChecklist();
     };
 
-    // ==================== 收支記帳功能 (LocalStorage 持久化) ====================
-    let budgetRecords = JSON.parse(localStorage.getItem("palau_budget") || '[{"id":1,"type":"income","item":"海外圓夢計畫預備金","amount":30000},{"id":2,"type":"expense","item":"海洋友善防曬乳與田野筆記本","amount":850}]');
+    // ==================== 收支記帳功能 ====================
+    let budgetRecords = JSON.parse(localStorage.getItem("palau_budget") || '[{"id":1,"type":"income","item":"海外圓夢計畫預備金","amount":30000},{"id":2,"type":"expense","item":"海洋友善防曬乳與雨衣防水袋","amount":1200}]');
 
     function renderBudget() {
       const listEl = document.getElementById("budget-list");
@@ -646,7 +679,7 @@
       renderBudget();
     };
 
-    // ==================== 田野心得筆記功能 (LocalStorage 持久化) ====================
+    // ==================== 田野心得筆記功能 ====================
     let fieldNotes = JSON.parse(localStorage.getItem("palau_notes") || '[{"id":1,"title":"行前培訓筆記：什麼是田野線索？","tag":"G 治理制度","content":"講師提醒我們不要用觀光客的獵奇視角看部落，而是用平視的南島同族視角，觀察像貼著帛琉宣言的水瓶、耆老修復 Bai 會所的雙手等有故事的細節。","date":"116/07/14"}]');
 
     function renderNotes() {
